@@ -1,0 +1,113 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h5>Curso - ucbonline</h5>
+            <p-divider></p-divider>
+            <div class="p-4">
+                <div class="grid grid-nogutter justify-content-start">
+                    <p>Para poder registrar los datos de calificaciones debe seleccionar máximo 4 cursos y presionar el botón <b>Registrar Datos</b></p>
+                </div>
+                <div class="grid grid-nogutter justify-content-end">
+                    <button pButton type="button" label="Registrar Datos" (click)="selectItem()"></button>
+                </div>
+            </div>
+
+            <p-table #dt [value]="cursos" [(selection)]="selectedCursos" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true" [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25,50]" [loading]="loading" responsiveLayout="scroll"
+                [paginator]="true" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} elementos" [filterDelay]="0" [globalFilterFields]="['name','credits','organization']">
+                <ng-template pTemplate="caption">
+                    <div class="table-header flex justify-content-between flex-column sm:flex-row">
+                        Lista de Cursos
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Búsqueda global" />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="name">
+                            <div class="flex justify-content-between align-items-center">
+                                Nombre
+                                <p-sortIcon field="name"></p-sortIcon>
+                                <p-columnFilter type="text" field="name" display="menu" class="ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th pSortableColumn="credits">
+                            <div class="flex justify-content-between align-items-center">
+                                Creditos
+                                <p-sortIcon field="credits"></p-sortIcon>
+                                <p-columnFilter type="text" field="credits" display="menu" class="ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th pSortableColumn="organization">
+                            <div class="flex justify-content-between align-items-center">
+                                Organización
+                                <p-sortIcon field="organization"></p-sortIcon>
+                                <p-columnFilter type="text" field="organization" display="menu" class="ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th pSortableColumn="semester">
+                            <div class="flex justify-content-between align-items-center">
+                                Semestre
+                                <p-sortIcon field="semester"></p-sortIcon>
+                                <p-columnFilter type="text" field="semester" display="menu" class="ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th pSortableColumn="start">
+                            <div class="flex justify-content-between align-items-center">
+                                Fecha Inicio
+                                <p-sortIcon field="start"></p-sortIcon>
+                                <p-columnFilter type="date" field="start" display="menu" currency="USD" class="ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th pSortableColumn="finish">
+                            <div class="flex justify-content-between align-items-center">
+                                Fecha Fin
+                                <p-sortIcon field="finish"></p-sortIcon>
+                                <p-columnFilter type="date" field="finish" display="menu" currency="USD" class="ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-curso>
+                    <tr class="p-selectable-row">
+                        <td>
+                            <p-tableCheckbox [value]="curso"></p-tableCheckbox>
+                        </td>
+                        <td>
+                            <span class="p-column-title">Name</span> {{curso.name}}
+                        </td>
+                        <td>
+                            <span class="p-column-title">Creditos</span> {{curso.credits}}
+                        </td>
+                        <td>
+                            <span class="p-column-title">Organización</span> {{curso.organization}}
+                        </td>
+                        <td>
+                            <span class="p-column-title">Semestre</span> {{curso.semester}}
+                        </td>
+                        <td>
+                            <span class="p-column-title">Fecha Inicio</span> {{curso.start | date: 'dd/MM/yyyy'}}
+                            <!--customer.date | date: 'MM/dd/yyyy'-->
+                        </td>
+                        <td>
+                            <span class="p-column-title">Fecha Fin</span> {{curso.finish}}
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="8">No se encontraron cursos.</td>
+                    </tr>
+                </ng-template>
+
+            </p-table>
+
+            <p-messages [value]="msgs"></p-messages>
+            <p-toast></p-toast>
+        </div>
+    </div>
+</div>
