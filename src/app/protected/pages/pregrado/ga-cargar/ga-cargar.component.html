@@ -1,0 +1,63 @@
+<div class="steps-curso-content">
+    <p-card>
+        <ng-template pTemplate="title">
+            Cargar Datos Asignaturas, Inscripciones
+        </ng-template>
+        <ng-template pTemplate="subtitle">
+            Debe subir un archivo Excel con dos hojas las primera debe contener la lista de paralelos de la gestión correspondiente y la segunda hoja debe contener la lista de inscripciones. Luego debe seleccionar el semestre correspondiente y proceder con el cargado
+            de datos.
+        </ng-template>
+        <ng-template pTemplate="content">
+            <div class="grid" *ngIf="!loading && !errorDatos">
+                <div class="col-12">
+                    <h5>Seleccione el Semestre</h5>
+                    <p-selectButton [options]="listSemestres" (onChange)="selectSemestre($event)" [(ngModel)]="valSelect1" optionLabel="name"></p-selectButton>
+                </div>
+                <div class="col-12">
+                    <h5>Subir Archivo</h5>
+                    <p-fileUpload name="fileData" customUpload="true" (uploadHandler)="subir($event)" fileLimit="1" multiple="multiple" accept=".xlsx,.xls" chooseLabel="Buscar Archivo" uploadLabel="Subir Archivo" cancelLabel="Cancelar">
+                    </p-fileUpload>
+                </div>
+            </div>
+            <div *ngIf="loading">
+                <p-progressSpinner class="grid grid-nogutter justify-content-center"></p-progressSpinner>
+                <p class="grid grid-nogutter justify-content-center">
+                    Cargando...
+                </p>
+            </div>
+            <p-messages severity="error" *ngIf="errorDatos">
+                <ng-template pTemplate>
+                    <i class="pi pi-times-circle" style="font-size: 1.5rem"></i>
+                    <div class="ml-2">
+                        <p>{{ error.error.msg }}</p>
+                        <p *ngIf="error.error.error != null">
+                            {{ error.error.error | json }}
+                        </p>
+                    </div>
+                </ng-template>
+            </p-messages>
+            <p-messages severity="success" *ngIf="successDatos">
+                <ng-template pTemplate>
+                    <i class="pi pi-times-circle" style="font-size: 1.5rem"></i>
+                    <div class="ml-2">
+                        <p>{{ success.data.msg }}</p>
+                        <p>{{ success.data.data | json }}</p>
+                    </div>
+                </ng-template>
+            </p-messages>
+            <p-dialog header="Dialog" [(visible)]="display" modal="modal" closable="false" closeOnEscape="false" showEffect="fade" [style]="{ width: '30vw' }" [breakpoints]="{ '960px': '75vw' }">
+                <div>
+                    <p-progressSpinner class="grid grid-nogutter justify-content-center"></p-progressSpinner>
+                    <p class="grid grid-nogutter justify-content-center">
+                        Cargando...
+                    </p>
+                </div>
+            </p-dialog>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div class="grid grid-nogutter justify-content-end">
+                <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right" [disabled]="btnActive"></p-button>
+            </div>
+        </ng-template>
+    </p-card>
+</div>

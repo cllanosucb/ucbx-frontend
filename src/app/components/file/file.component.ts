@@ -3,10 +3,9 @@ import { MessageService } from 'primeng/api';
 
 @Component({
     templateUrl: './file.component.html',
-    providers: [MessageService]
+    providers: [MessageService],
 })
 export class FileComponent {
-
     uploadedFiles: any[] = [];
 
     constructor(private messageService: MessageService) {}
@@ -16,6 +15,10 @@ export class FileComponent {
             this.uploadedFiles.push(file);
         }
 
-        this.messageService.add({severity: 'info', summary: 'Success', detail: 'File Uploaded'});
+        this.messageService.add({
+            severity: 'info',
+            summary: 'Success',
+            detail: 'File Uploaded',
+        });
     }
 }

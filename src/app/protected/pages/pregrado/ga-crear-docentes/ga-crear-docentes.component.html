@@ -1,0 +1,45 @@
+<div class="steps-curso-content">
+    <p-card>
+        <ng-template pTemplate="title"> Registrar Docentes </ng-template>
+        <ng-template pTemplate="subtitle">
+            Este apartado permite crear docentes en la plataforma NEO en el caso de no existir la cuenta.
+        </ng-template>
+        <ng-template pTemplate="content">
+            <div *ngIf="loading">
+                <p-progressSpinner class="grid grid-nogutter justify-content-center"></p-progressSpinner>
+                <p class="grid grid-nogutter justify-content-center">
+                    Registrando Datos Espere...
+                </p>
+            </div>
+            <p-messages severity="error" *ngIf="errorDatos">
+                <ng-template pTemplate>
+                    <i class="pi pi-times-circle" style="font-size: 1.5rem"></i>
+                    <div class="ml-2">
+                        <p>{{ error.error.msg }}</p>
+                        <p *ngIf="error.error.err != null">
+                            {{ error.error.err | json }}
+                        </p>
+                        <p *ngIf="error.error.error != null">
+                            {{ error.error.error | json }}
+                        </p>
+                    </div>
+                </ng-template>
+            </p-messages>
+            <p-messages severity="success" *ngIf="successDatos">
+                <ng-template pTemplate>
+                    <i class="pi pi-times-circle" style="font-size: 1.5rem"></i>
+                    <div class="ml-2">
+                        <p>{{ success.data.msg }}</p>
+                        <p>{{ success.data | json }}</p>
+                    </div>
+                </ng-template>
+            </p-messages>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div class="grid grid-nogutter justify-content-end">
+                <p-button label="Back" (onClick)="prevPage()" icon="pi pi-angle-left" [disabled]="btnActiveBack"></p-button>
+                <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right" [disabled]="btnActive"></p-button>
+            </div>
+        </ng-template>
+    </p-card>
+</div>

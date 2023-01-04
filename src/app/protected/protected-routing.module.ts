@@ -42,6 +42,61 @@ const routes: Routes = [
                             },
                         ],
                     },
+
+                    /* {
+                        path: 'asignaturas',
+                        loadChildren: () =>
+                            import('./pages/pregrado/pregrado.module').then(
+                                (m) => m.PregradoModule
+                            ),
+                    }, */
+                    {
+                        path: 'gestionarAsignaturas',
+                        loadChildren: () =>
+                            import(
+                                './pages/gestionar-asginaturas-pregrado/gestionar-asginaturas-pregrado.module'
+                            ).then((m) => m.GestionarAsginaturasPregradoModule),
+                    },
+                    {
+                        path: 'gestionarInscripciones',
+                        loadChildren: () =>
+                            import(
+                                './pages/gestionar-inscripciones-pregrado/gestionar-inscripciones-pregrado.module'
+                            ).then(
+                                (m) => m.GestionarInscripcionesPregradoModule
+                            ),
+                    },
+                    //asignaturas practicas
+                    {
+                        path: 'gestionarAsignaturasPracticas',
+                        loadChildren: () =>
+                            import(
+                                './pages/gestionar-asginaturas-practicas-pregrado/gestionar-asginaturas-practicas-pregrado.module'
+                            ).then(
+                                (m) =>
+                                    m.GestionarAsginaturasPracticasPregradoModule
+                            ),
+                    },
+                    //asignaturas practicas
+                    //inscripciones practicas
+                    {
+                        path: 'gestionarInscripcionesPracticas',
+                        loadChildren: () =>
+                            import(
+                                './pages/gestionar-inscripciones-practicas-pregrado/gestionar-inscripciones-practicas-pregrado.module'
+                            ).then(
+                                (m) =>
+                                    m.GestionarInscripcionesPracticasPregradoModule
+                            ),
+                    },
+                    //inscripciones practicas
+                    {
+                        path: 'gestionarEncuestas',
+                        loadChildren: () =>
+                            import(
+                                './pages/gestionar-encuestas-pregrado/gestionar-encuestas-pregrado.module'
+                            ).then((m) => m.GestionarEncuestasPregradoModule),
+                    },
                 ],
             },
             { path: '**', redirectTo: '' },

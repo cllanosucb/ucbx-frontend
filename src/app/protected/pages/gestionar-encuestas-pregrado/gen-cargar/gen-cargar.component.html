@@ -1,0 +1,58 @@
+<div class="steps-inscripciones-content">
+    <p-card>
+        <ng-template pTemplate="title">
+            Cargar Datos Encuestas
+        </ng-template>
+        <ng-template pTemplate="subtitle">
+            Debe subir un archivo Excel con una hoja que debe contener la lista de las encuestas realizadas.
+        </ng-template>
+        <ng-template pTemplate="content">
+            <div class="grid" *ngIf="!loading && !errorDatos">
+                <div class="col-12">
+                    <h5>Subir Archivo</h5>
+                    <p-fileUpload name="fileData" customUpload="true" (uploadHandler)="subir($event)" fileLimit="1" multiple="multiple" accept=".xlsx,.xls" chooseLabel="Buscar Archivo" uploadLabel="Subir Archivo" cancelLabel="Cancelar">
+                    </p-fileUpload>
+                </div>
+            </div>
+            <div *ngIf="loading">
+                <p-progressSpinner class="grid grid-nogutter justify-content-center"></p-progressSpinner>
+                <p class="grid grid-nogutter justify-content-center">
+                    Cargando...
+                </p>
+            </div>
+            <p-messages severity="error" *ngIf="errorDatos">
+                <ng-template pTemplate>
+                    <i class="pi pi-times-circle" style="font-size: 1.5rem"></i>
+                    <div class="ml-2">
+                        <p>{{ error.error.msg }}</p>
+                        <p *ngIf="error.error.error != null">
+                            {{ error.error.error | json }}
+                        </p>
+                    </div>
+                </ng-template>
+            </p-messages>
+            <p-messages severity="success" *ngIf="successDatos">
+                <ng-template pTemplate>
+                    <i class="pi pi-times-circle" style="font-size: 1.5rem"></i>
+                    <div class="ml-2">
+                        <p>{{ success.data.msg }}</p>
+                        <p>{{ success.data.data | json }}</p>
+                    </div>
+                </ng-template>
+            </p-messages>
+            <p-dialog header="Dialog" [(visible)]="display" modal="modal" closable="false" closeOnEscape="false" showEffect="fade" [style]="{ width: '30vw' }" [breakpoints]="{ '960px': '75vw' }">
+                <div>
+                    <p-progressSpinner class="grid grid-nogutter justify-content-center"></p-progressSpinner>
+                    <p class="grid grid-nogutter justify-content-center">
+                        Cargando...
+                    </p>
+                </div>
+            </p-dialog>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div class="grid grid-nogutter justify-content-end">
+                <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+            </div>
+        </ng-template>
+    </p-card>
+</div>

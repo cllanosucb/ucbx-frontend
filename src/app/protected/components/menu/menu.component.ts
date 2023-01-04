@@ -33,6 +33,44 @@ export class MenuComponent implements OnInit {
                     },
                 ],
             },
+            {
+                label: 'Pregrado',
+                items: [
+                    {
+                        label: 'Gestionar Asignaturas Teóricas',
+                        icon: 'pi pi-book',
+                        routerLink: ['gestionarAsignaturas/pregrado/cargar'],
+                    },
+                    {
+                        label: 'Gestionar Inscripciones Teóricas',
+                        icon: 'pi pi-book',
+                        routerLink: ['gestionarInscripciones/pregrado/cargar'],
+                    },
+                    //asignaturas practicas
+                    /* {
+                        label: 'Gestionar Asignaturas Practicas',
+                        icon: 'pi pi-book',
+                        routerLink: [
+                            'gestionarAsignaturasPracticas/pregrado/cargar',
+                        ],
+                    }, */
+                    //asignaturas practicas
+                    //inscripciones practicas
+                    /* {
+                        label: 'Gestionar Inscripciones Practicas',
+                        icon: 'pi pi-book',
+                        routerLink: [
+                            'gestionarInscripcionesPracticas/pregrado/cargar',
+                        ],
+                    }, */
+                    //inscripciones practicas
+                    /* {
+                        label: 'Gestionar encuestas',
+                        icon: 'pi pi-book',
+                        routerLink: ['gestionarEncuestas/pregrado/cargar'],
+                    }, */
+                ],
+            },
         ];
     }
 

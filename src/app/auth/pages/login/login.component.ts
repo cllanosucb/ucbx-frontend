@@ -13,15 +13,14 @@ import { Message } from 'primeng/api';
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-    
     config: AppConfig;
     subscription: Subscription;
-    
+
     formLogin: FormGroup = this.fb.group({
-        usuario: ['cllanos@ucb.edu.bo', [Validators.required, Validators.email]],
-        clave: ['123456789', [Validators.required, Validators.minLength(6)]]
+        usuario: ['', [Validators.required, Validators.email]],
+        clave: ['', [Validators.required, Validators.minLength(6)]],
     });
-    type: string = "password";
+    type: string = 'password';
     msgs: Message[] = [];
     loading: boolean;
 
@@ -50,23 +49,28 @@ export class LoginComponent implements OnInit, OnDestroy {
     verPass() {
         this.type = this.type === 'text' ? 'password' : 'text';
     }
-    
+
     login() {
         this.loading = true;
         const { usuario, clave } = this.formLogin.value;
-        this.authService.login(usuario, clave)
-            .subscribe(resp => {
+        this.authService.login(usuario, clave).subscribe(
+            (resp) => {
                 this.loading = false;
-                this.router.navigate(['/index'])
-            }, err => {
+                this.router.navigate(['/index']);
+            },
+            (err) => {
                 this.loading = false;
                 this.errorApi(err);
-            });
+            }
+        );
     }
 
     errorApi(error) {
         this.msgs = [];
-        this.msgs.push({ severity: 'error', summary: 'Error Message', detail: error.error.msg });
+        this.msgs.push({
+            severity: 'error',
+            summary: 'Error Message',
+            detail: error.error.msg,
+        });
     }
-
 }

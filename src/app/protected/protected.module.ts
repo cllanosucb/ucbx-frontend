@@ -15,7 +15,17 @@ import { RegTareasComponent } from './pages/reg-tareas/reg-tareas.component';
 import { RegCalifiicacionesComponent } from './pages/reg-califiicaciones/reg-califiicaciones.component';
 
 @NgModule({
-    declarations: [IndexComponent, CursosComponent, HomeComponent, StepsCursoComponent, RegCursosComponent, RegEstCursoComponent, RegModulosComponent, RegTareasComponent, RegCalifiicacionesComponent],
+    declarations: [
+        IndexComponent,
+        CursosComponent,
+        HomeComponent,
+        StepsCursoComponent,
+        RegCursosComponent,
+        RegEstCursoComponent,
+        RegModulosComponent,
+        RegTareasComponent,
+        RegCalifiicacionesComponent,
+    ],
     imports: [
         CommonModule,
         ProtectedRoutingModule,
